@@ -20,7 +20,6 @@ const Cancelled = ({ data, findUser }) => {
           <IoAddOutline />
         </div>
       </div>
-      <div className="bg-white rounded-md py-2 px-4 my-2">Learn</div>
     </div>
   );
 };

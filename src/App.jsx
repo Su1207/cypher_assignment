@@ -16,6 +16,7 @@ function App() {
   const [error, setError] = useState(null);
   const [sortOption, setSortOption] = useState("priority");
   const [orderOption, setOrderOption] = useState("status");
+  const [displayOption, setDisplayOption] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,6 +43,10 @@ function App() {
     return <div>Error: {error}</div>;
   }
 
+  const toggleDisplayOptions = () => {
+    setDisplayOption(!displayOption);
+  };
+
   const findUser = (userId) => {
     const user = data.users.find((user) => user.id === userId);
     return user ? user.name : "unknown";
@@ -54,32 +59,38 @@ function App() {
 
   return (
     <div>
-      <Navbar />
-      <div className=" mb-4 flex gap-5">
-        <label className="block text-gray-700 text-sm font-bold mb-2">
-          Grouping
-        </label>
-        <select
-          className="border rounded p-1"
-          value={orderOption}
-          onChange={(e) => setOrderOption(e.target.value)}
-        >
-          <option value="status">Status</option>
-          <option value="users">Users</option>
-          <option value="priority">Priority</option>
-        </select>
-        <label className="block text-gray-700 text-sm font-bold mb-2">
-          Ordering
-        </label>
-        <select
-          className="border rounded p-1"
-          value={sortOption}
-          onChange={(e) => setSortOption(e.target.value)}
-        >
-          <option value="priority">Priority</option>
-          <option value="title">Title</option>
-        </select>
-      </div>
+      <Navbar onDisplayOptionsClick={toggleDisplayOptions} />
+      {displayOption && (
+        <div className="absolute top-14 left-5 bg-white p-5 border rounded-md shadow-md z-10">
+          <div className="flex items-center gap-10 mb-3">
+            <label className="block text-gray-400 text-md font-md mb-2 text-md">
+              Grouping
+            </label>
+            <select
+              className="border rounded p-1 pr-4"
+              value={orderOption}
+              onChange={(e) => setOrderOption(e.target.value)}
+            >
+              <option value="status">Status</option>
+              <option value="users">Users</option>
+              <option value="priority">Priority</option>
+            </select>
+          </div>
+          <div className="flex items-center gap-10">
+            <label className="block text-gray-400 text-md font-md mb-2 text-md mr-1">
+              Ordering
+            </label>
+            <select
+              className="border rounded p-1 pr-4 focus:ring-offset-0"
+              value={sortOption}
+              onChange={(e) => setSortOption(e.target.value)}
+            >
+              <option value="priority">Priority</option>
+              <option value="title">Title</option>
+            </select>
+          </div>
+        </div>
+      )}
       <div className="bg-gray-100 h-full px-5 py-5">
         {orderOption === "status" && (
           <div className="grid grid-cols-5 gap-4">
