@@ -5,7 +5,7 @@ import { IoAddOutline } from "react-icons/io5";
 import PriorityComponent from "../priorityNetwork/PriorityComponent";
 import { FaCircle } from "react-icons/fa";
 
-const Todo = ({ data, findUser, sortOption, userStatus }) => {
+const Todo = ({ data, findUser, sortOption, userStatus, darkMode }) => {
   const sortTickets = (a, b) => {
     if (sortOption === "priority") {
       if (a.priority !== b.priority) {
@@ -30,7 +30,15 @@ const Todo = ({ data, findUser, sortOption, userStatus }) => {
       <div className="flex items-center justify-between">
         <div className="flex items-center">
           <GiCircle className="mr-2" />
-          <p className="font-semibold text-gray-800">Todo</p>
+          <p
+            className={
+              darkMode
+                ? `font-semibold text-white`
+                : `font-semibold text-gray-800`
+            }
+          >
+            Todo
+          </p>
         </div>
         <div className="flex items-center">
           <RxDotsHorizontal className="mr-1" />
@@ -38,7 +46,14 @@ const Todo = ({ data, findUser, sortOption, userStatus }) => {
         </div>
       </div>
       {todoTickets.map((tickets) => (
-        <div className="bg-white rounded-md py-2 px-5 my-2" key={tickets.id}>
+        <div
+          className={`shadow-md ${
+            darkMode
+              ? "bg-slate-900 text-white rounded-md py-2 px-5 my-2 border"
+              : "bg-white rounded-md py-2 px-5 my-2 border"
+          }`}
+          key={tickets.id}
+        >
           <div className="flex items-center justify-between mb-2">
             <div className="text-gray-500">{tickets.id}</div>
             <div

@@ -5,7 +5,7 @@ import StatusSymbol from "./StatusSymbol";
 import PriorityComponent from "../priorityNetwork/PriorityComponent";
 import { FaCircle } from "react-icons/fa";
 
-const Users = ({ data, sortOption }) => {
+const Users = ({ data, sortOption, darkMode }) => {
   const sizes = data.users.length;
 
   const getInitials = (name) => {
@@ -48,7 +48,15 @@ const Users = ({ data, sortOption }) => {
                   <div className="absolute bg-gray-500 w-1 h-1 bottom-0 right-0 rounded-full"></div>
                 )}
               </div>
-              <p className="font-semibold text-gray-800">{user.name}</p>
+              <p
+                className={
+                  darkMode
+                    ? `font-semibold text-white`
+                    : `font-semibold text-gray-800`
+                }
+              >
+                {user.name}
+              </p>
               <div className="text-gray-500 ml-2">
                 {findTickets(user.id).length}
               </div>
@@ -60,7 +68,14 @@ const Users = ({ data, sortOption }) => {
           </div>
           {/* Display tickets for the current user */}
           {findTickets(user.id).map((ticket) => (
-            <div className="bg-white rounded-md py-2 px-5 my-2" key={ticket.id}>
+            <div
+              className={
+                darkMode
+                  ? `bg-slate-900 rounded-md py-2 px-5 my-2 border text-white`
+                  : `bg-white rounded-md py-2 px-5 my-2`
+              }
+              key={ticket.id}
+            >
               <div className="flex items-center justify-between mb-2">
                 <div className="text-gray-500">{ticket.id}</div>
               </div>

@@ -17,6 +17,7 @@ function App() {
   const [sortOption, setSortOption] = useState("priority");
   const [orderOption, setOrderOption] = useState("status");
   const [displayOption, setDisplayOption] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,17 +58,34 @@ function App() {
     return user.available;
   };
 
+  const modeChange = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
     <div>
-      <Navbar onDisplayOptionsClick={toggleDisplayOptions} />
+      <Navbar
+        onDisplayOptionsClick={toggleDisplayOptions}
+        onModeChange={modeChange}
+      />
       {displayOption && (
-        <div className="absolute top-14 left-5 bg-white p-5 border rounded-md shadow-md z-10">
+        <div
+          className={
+            darkMode
+              ? `absolute top-14 left-5 bg-gray-800 p-5 border rounded-md shadow-md z-10 text-white`
+              : `absolute top-14 left-5 bg-white p-5 border rounded-md shadow-md z-10`
+          }
+        >
           <div className="flex items-center gap-10 mb-3">
             <label className="block text-gray-400 text-md font-md mb-2 text-md">
               Grouping
             </label>
             <select
-              className="border rounded p-1 pr-4"
+              className={
+                darkMode
+                  ? `bg-gray-800 text-white text-sm border rounded p-1 pr-4`
+                  : `text-sm border rounded p-1 pr-4`
+              }
               value={orderOption}
               onChange={(e) => setOrderOption(e.target.value)}
             >
@@ -81,7 +99,11 @@ function App() {
               Ordering
             </label>
             <select
-              className="border rounded p-1 pr-4 focus:ring-offset-0"
+              className={
+                darkMode
+                  ? `bg-gray-800 text-white text-sm border rounded p-1 pr-4`
+                  : `text-sm border rounded p-1 pr-4`
+              }
               value={sortOption}
               onChange={(e) => setSortOption(e.target.value)}
             >
@@ -91,7 +113,13 @@ function App() {
           </div>
         </div>
       )}
-      <div className="bg-gray-100 h-full px-5 py-5">
+      <div
+        className={
+          darkMode
+            ? `bg-black-100 text-white h-full px-5 py-5`
+            : `bg-gray-100 h-full px-5 py-5`
+        }
+      >
         {orderOption === "status" && (
           <div className="grid grid-cols-5 gap-4">
             <Backlog
@@ -99,30 +127,35 @@ function App() {
               findUser={findUser}
               sortOption={sortOption}
               userStatus={userStatus}
+              darkMode={darkMode}
             />
             <Todo
               data={data}
               findUser={findUser}
               sortOption={sortOption}
               userStatus={userStatus}
+              darkMode={darkMode}
             />
             <Progress
               data={data}
               findUser={findUser}
               sortOption={sortOption}
               userStatus={userStatus}
+              darkMode={darkMode}
             />
             <Done
               data={data}
               findUser={findUser}
               sortOption={sortOption}
               userStatus={userStatus}
+              darkMode={darkMode}
             />
             <Cancelled
               data={data}
               findUser={findUser}
               sortOption={sortOption}
               userStatus={userStatus}
+              darkMode={darkMode}
             />
           </div>
         )}
@@ -133,6 +166,7 @@ function App() {
               data={data}
               sortOption={sortOption}
               userStatus={userStatus}
+              darkMode={darkMode}
             />
           </div>
         )}
@@ -144,6 +178,7 @@ function App() {
               sortOption={sortOption}
               userStatus={userStatus}
               findUser={findUser}
+              darkMode={darkMode}
             />
           </div>
         )}

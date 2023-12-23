@@ -4,8 +4,9 @@ import { RxDotsHorizontal } from "react-icons/rx";
 import { IoAddOutline } from "react-icons/io5";
 import { FaCircle } from "react-icons/fa";
 import PriorityComponent from "../priorityNetwork/PriorityComponent";
+import { MdDarkMode } from "react-icons/md";
 
-const Backlog = ({ data, findUser, sortOption, userStatus }) => {
+const Backlog = ({ data, findUser, sortOption, userStatus, darkMode }) => {
   const sortTickets = (a, b) => {
     if (sortOption === "priority") {
       if (b.priority !== a.priority) {
@@ -32,7 +33,15 @@ const Backlog = ({ data, findUser, sortOption, userStatus }) => {
       <div className="flex items-center justify-between">
         <div className="flex items-center">
           <TbCircleDotted className="mr-2" />
-          <p className="font-semibold text-gray-800">Backlog</p>
+          <p
+            className={
+              darkMode
+                ? `font-semibold text-white`
+                : `font-semibold text-gray-800`
+            }
+          >
+            Backlog
+          </p>
         </div>
         <div className="flex items-center">
           <RxDotsHorizontal className="mr-1" />
@@ -41,7 +50,14 @@ const Backlog = ({ data, findUser, sortOption, userStatus }) => {
       </div>
 
       {backlogTickets.map((tickets) => (
-        <div className="bg-white rounded-md py-2 px-5 my-2" key={tickets.id}>
+        <div
+          className={
+            darkMode
+              ? `bg-slate-900 rounded-md py-2 px-5 my-2 border text-white`
+              : `bg-white rounded-md py-2 px-5 my-2`
+          }
+          key={tickets.id}
+        >
           <div className="flex items-center justify-between mb-2">
             <div className="text-gray-500">{tickets.id}</div>
             <div

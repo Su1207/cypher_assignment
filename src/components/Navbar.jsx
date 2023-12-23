@@ -2,11 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 import { MdOutlineTune } from "react-icons/md";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { BiSolidMoon } from "react-icons/bi";
+import { IoMdSunny } from "react-icons/io";
 
-const Navbar = ({ onDisplayOptionsClick }) => {
+const Navbar = ({ onDisplayOptionsClick, onModeChange }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [arrowRotation, setArrowRotation] = useState(0);
-  const dropdownRef = useRef(null);
+  const [darkMode, setDarkMode] = useState(false);
 
   const toggleDropdown = () => {
     onDisplayOptionsClick();
@@ -14,26 +15,27 @@ const Navbar = ({ onDisplayOptionsClick }) => {
     setArrowRotation((prevRotation) => (prevRotation === 0 ? 180 : 0));
   };
 
-  const handleClickOutside = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setIsDropdownOpen(false);
-      onDisplayOptionsClick();
-    }
+  const handleChange = () => {
+    setDarkMode(!darkMode);
+    onModeChange();
   };
 
-  useEffect(() => {
-    window.addEventListener("click", handleClickOutside);
-    return () => {
-      window.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
-
   return (
-    <nav className="flex justify-between items-center px-5 py-3 border border-b-1">
-      <div className="" ref={dropdownRef}>
+    <nav
+      className={
+        darkMode
+          ? `flex justify-between items-center px-5 py-3 bg-slate-900 text-white`
+          : `flex justify-between items-center px-5 py-3 border border-b-1`
+      }
+    >
+      <div className="">
         <button
           onClick={toggleDropdown}
-          className="inline-flex items-center gap-2 px-4 py-2 border border-gray-100 rounded-md shadow-md text-sm font-small text-gray-700 bg-white focus:outline-none transition-transform duration-300 ease-in-out"
+          className={
+            darkMode
+              ? `inline-flex items-center gap-2 px-4 py-2 border-gray-500 border-2 rounded-md shadow-lg text-sm font-small text-white bg-slate-900 focus:outline-none transition-transform duration-300 ease-in-out`
+              : `inline-flex items-center gap-2 px-4 py-2 border border-gray-100 rounded-md shadow-md text-sm font-small text-gray-700 bg-white focus:outline-none transition-transform duration-300 ease-in-out`
+          }
           type="button"
         >
           <MdOutlineTune className="text-gray-600 size-4" />
@@ -44,8 +46,12 @@ const Navbar = ({ onDisplayOptionsClick }) => {
           />
         </button>
       </div>
-      <div>
-        <BiSolidMoon className="size-5" />
+      <div onClick={handleChange}>
+        {!darkMode ? (
+          <BiSolidMoon className="size-5" />
+        ) : (
+          <IoMdSunny className="size-5" />
+        )}
       </div>
     </nav>
   );

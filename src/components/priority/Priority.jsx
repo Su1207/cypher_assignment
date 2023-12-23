@@ -5,7 +5,7 @@ import { IoAddOutline } from "react-icons/io5";
 import StatusSymbol from "../users/StatusSymbol";
 import { FaCircle } from "react-icons/fa";
 
-const Priority = ({ data, sortOption, userStatus, findUser }) => {
+const Priority = ({ data, sortOption, userStatus, findUser, darkMode }) => {
   const sortTickets = (a, b) => {
     if (sortOption === "priority") {
       if (a.priority !== b.priority) {
@@ -76,7 +76,13 @@ const Priority = ({ data, sortOption, userStatus, findUser }) => {
               <div>
                 <PriorityComponent priority={Number(priority)} />
               </div>
-              <div className="font-semibold text-gray-800">
+              <div
+                className={
+                  darkMode
+                    ? `font-semibold text-white`
+                    : `font-semibold text-gray-800`
+                }
+              >
                 {getPriorityLabel(Number(priority))}
               </div>
             </div>
@@ -86,7 +92,14 @@ const Priority = ({ data, sortOption, userStatus, findUser }) => {
             </div>
           </div>
           {tickets.map((ticket) => (
-            <div className="bg-white rounded-md py-2 px-5 my-2" key={ticket.id}>
+            <div
+              className={
+                darkMode
+                  ? `bg-slate-900 rounded-md py-2 px-5 my-2 border text-white`
+                  : `bg-white rounded-md py-2 px-5 my-2`
+              }
+              key={ticket.id}
+            >
               <div className="flex items-center justify-between mb-2">
                 <div className="text-gray-500">{ticket.id}</div>
                 <div
