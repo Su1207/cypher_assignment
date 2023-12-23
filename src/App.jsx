@@ -15,6 +15,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [sortOption, setSortOption] = useState("priority");
+  const [orderOption, setOrderOption] = useState("status");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,16 +55,21 @@ function App() {
   return (
     <div>
       <Navbar />
-      {/* <div>
-        {data.tickets.map((ticket) => (
-          <div key={ticket.id}>
-            {ticket.title} - {findUser(ticket.userId)} - {ticket.tag[0]}
-          </div>
-        ))}
-      </div> */}
-      <div className="mb-4">
+      <div className=" mb-4 flex gap-5">
         <label className="block text-gray-700 text-sm font-bold mb-2">
-          Sort By:
+          Grouping
+        </label>
+        <select
+          className="border rounded p-1"
+          value={orderOption}
+          onChange={(e) => setOrderOption(e.target.value)}
+        >
+          <option value="status">Status</option>
+          <option value="users">Users</option>
+          <option value="priority">Priority</option>
+        </select>
+        <label className="block text-gray-700 text-sm font-bold mb-2">
+          Ordering
         </label>
         <select
           className="border rounded p-1"
@@ -75,55 +81,61 @@ function App() {
         </select>
       </div>
       <div className="bg-gray-100 h-full px-5 py-5">
-        <div className="grid grid-cols-5 gap-4">
-          {/* <Backlog
-          data={data}
-          findUser={findUser}
-          sortOption={sortOption}
-          userStatus={userStatus}
-        />
-        <Todo
-          data={data}
-          findUser={findUser}
-          sortOption={sortOption}
-          userStatus={userStatus}
-        />
-        <Progress
-          data={data}
-          findUser={findUser}
-          sortOption={sortOption}
-          userStatus={userStatus}
-        />
-        <Done
-          data={data}
-          findUser={findUser}
-          sortOption={sortOption}
-          userStatus={userStatus}
-        />
-        <Cancelled
-          data={data}
-          findUser={findUser}
-          sortOption={sortOption}
-          userStatus={userStatus}
-        /> */}
-        </div>
+        {orderOption === "status" && (
+          <div className="grid grid-cols-5 gap-4">
+            <Backlog
+              data={data}
+              findUser={findUser}
+              sortOption={sortOption}
+              userStatus={userStatus}
+            />
+            <Todo
+              data={data}
+              findUser={findUser}
+              sortOption={sortOption}
+              userStatus={userStatus}
+            />
+            <Progress
+              data={data}
+              findUser={findUser}
+              sortOption={sortOption}
+              userStatus={userStatus}
+            />
+            <Done
+              data={data}
+              findUser={findUser}
+              sortOption={sortOption}
+              userStatus={userStatus}
+            />
+            <Cancelled
+              data={data}
+              findUser={findUser}
+              sortOption={sortOption}
+              userStatus={userStatus}
+            />
+          </div>
+        )}
 
-        <div>
-          {/* <Users
-          data={data}
-          sortOption={sortOption}
-          userStatus={userStatus}
-        /> */}
-        </div>
+        {orderOption === "users" && (
+          <div>
+            <Users
+              data={data}
+              sortOption={sortOption}
+              userStatus={userStatus}
+            />
+          </div>
+        )}
 
-        <div>
-          <Priority
-            data={data}
-            sortOption={sortOption}
-            userStatus={userStatus}
-            findUser={findUser}
-          />
-        </div>
+        {orderOption === "priority" && (
+          <div>
+            <Priority
+              data={data}
+              sortOption={sortOption}
+              userStatus={userStatus}
+              findUser={findUser}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
