@@ -8,6 +8,7 @@ const Navbar = ({ onDisplayOptionsClick }) => {
   const [arrowRotation, setArrowRotation] = useState(0);
 
   const toggleDropdown = () => {
+    onDisplayOptionsClick();
     setIsDropdownOpen(!isDropdownOpen);
     setArrowRotation((prevRotation) => (prevRotation === 0 ? 180 : 0));
   };
@@ -16,7 +17,7 @@ const Navbar = ({ onDisplayOptionsClick }) => {
     <nav className="flex justify-between items-center px-5 py-3 border border-b-1">
       <div className="">
         <button
-          onClick={onDisplayOptionsClick}
+          onClick={toggleDropdown}
           className="inline-flex items-center gap-2 px-4 py-2 border border-gray-100 rounded-md shadow-md text-sm font-small text-gray-700 bg-white focus:outline-none transition-transform duration-300 ease-in-out"
           type="button"
         >
