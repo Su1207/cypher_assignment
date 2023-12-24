@@ -42,6 +42,7 @@ const Backlog = ({ data, findUser, sortOption, userStatus, darkMode }) => {
           >
             Backlog
           </p>
+          <div className="ml-4">{backlogTickets.length}</div>
         </div>
         <div className="flex items-center">
           <RxDotsHorizontal className="mr-1" />

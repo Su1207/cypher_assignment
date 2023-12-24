@@ -6,8 +6,6 @@ import PriorityComponent from "../priorityNetwork/PriorityComponent";
 import { FaCircle } from "react-icons/fa";
 
 const Users = ({ data, sortOption, darkMode }) => {
-  const sizes = data.users.length;
-
   const getInitials = (name) => {
     const words = name.split(" ");
     return words.map((word) => word[0]).join("");
@@ -32,7 +30,9 @@ const Users = ({ data, sortOption, darkMode }) => {
   };
 
   return (
-    <div className={`grid grid-cols-${sizes} gap-4`}>
+    <div
+      className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4`}
+    >
       {data.users.map((user) => (
         <div key={user.id}>
           <div className="flex items-center justify-between">
@@ -71,7 +71,7 @@ const Users = ({ data, sortOption, darkMode }) => {
             <div
               className={
                 darkMode
-                  ? `bg-slate-900 rounded-md py-2 px-5 my-2 border text-white`
+                  ? `bg-slate-900 rounded-md py-2 px-5 my-2 border text-white md:text-medium`
                   : `bg-white rounded-md py-2 px-5 my-2`
               }
               key={ticket.id}

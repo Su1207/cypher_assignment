@@ -39,6 +39,7 @@ const Todo = ({ data, findUser, sortOption, userStatus, darkMode }) => {
           >
             Todo
           </p>
+          <div className="ml-4">{todoTickets.length}</div>
         </div>
         <div className="flex items-center">
           <RxDotsHorizontal className="mr-1" />

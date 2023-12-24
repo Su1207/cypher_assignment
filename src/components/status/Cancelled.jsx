@@ -22,6 +22,7 @@ const Cancelled = ({ data, findUser, darkMode }) => {
           >
             Cancelled
           </p>
+          <div className="ml-4">{cancelTickets.length}</div>
         </div>
         <div className="flex items-center">
           <RxDotsHorizontal className="mr-1" />

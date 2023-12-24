@@ -3,7 +3,8 @@ import { FaCheckCircle } from "react-icons/fa";
 import { RxDotsHorizontal } from "react-icons/rx";
 import { IoAddOutline } from "react-icons/io5";
 
-const Done = ({ darkMode }) => {
+const Done = ({ data, darkMode }) => {
+  const doneTickets = data.tickets.filter((ticket) => ticket.status === "Done");
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -18,6 +19,7 @@ const Done = ({ darkMode }) => {
           >
             Done
           </p>
+          <div className="ml-4">{doneTickets.length}</div>
         </div>
         <div className="flex items-center">
           <RxDotsHorizontal className="mr-1" />

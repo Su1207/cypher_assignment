@@ -72,7 +72,7 @@ function App() {
         <div
           className={
             darkMode
-              ? `absolute top-14 left-5 bg-gray-800 p-5 border rounded-md shadow-md z-10 text-white`
+              ? `absolute top-14 left-5 bg-slate-900 p-5 border rounded-md shadow-md z-10 text-white`
               : `absolute top-14 left-5 bg-white p-5 border rounded-md shadow-md z-10`
           }
         >
@@ -117,11 +117,11 @@ function App() {
         className={
           darkMode
             ? `bg-black-100 text-white h-full px-5 py-5`
-            : `bg-gray-100 h-full px-5 py-5`
+            : `bg-gray-100 h-screen px-5 py-5`
         }
       >
         {orderOption === "status" && (
-          <div className="grid grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             <Backlog
               data={data}
               findUser={findUser}

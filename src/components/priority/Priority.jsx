@@ -66,7 +66,7 @@ const Priority = ({ data, sortOption, userStatus, findUser, darkMode }) => {
   const groupedTickets = groupTicketsByPriority();
 
   return (
-    <div className="grid grid-cols-5 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
       {/* In JavaScript, Object.entries() is used to get an array of key-value pairs
       from an object. */}
       {Object.entries(groupedTickets).map(([priority, tickets]) => (
@@ -85,6 +85,7 @@ const Priority = ({ data, sortOption, userStatus, findUser, darkMode }) => {
               >
                 {getPriorityLabel(Number(priority))}
               </div>
+              <div className="ml-2">{groupedTickets[priority].length}</div>
             </div>
             <div className="flex items-center">
               <RxDotsHorizontal className="mr-1" />
