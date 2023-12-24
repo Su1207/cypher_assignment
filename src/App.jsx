@@ -117,7 +117,7 @@ function App() {
         className={
           darkMode
             ? `bg-black-100 text-white h-full px-5 py-5`
-            : `bg-gray-100 h-screen px-5 py-5`
+            : `bg-gray-100 h-full px-5 py-5`
         }
       >
         {orderOption === "status" && (
