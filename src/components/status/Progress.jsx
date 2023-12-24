@@ -40,7 +40,7 @@ const Progress = ({ data, findUser, sortOption, userStatus, darkMode }) => {
           >
             In Progress
           </p>
-          <div ml-4>{progressTickets.length}</div>
+          <div className="ml-4">{progressTickets.length}</div>
         </div>
         <div className="flex items-center">
           <RxDotsHorizontal className="mr-1" />
