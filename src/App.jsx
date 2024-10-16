@@ -3,9 +3,9 @@ import axios from "axios";
 import "./App.css";
 
 function App() {
-  const [time, setTime] = useState(10); // Initial value set to 10
+  const [time, setTime] = useState(0); // Initial value set to 0
   const [loading, setLoading] = useState(false);
-  const [inputValue, setInputValue] = useState(10); // Separate state for input
+  const [inputValue, setInputValue] = useState(0); // Separate state for input
 
   useEffect(() => {
     axios
@@ -13,7 +13,7 @@ function App() {
         "https://interview-8e4c5-default-rtdb.firebaseio.com/front-end/counter1.json"
       )
       .then((response) => {
-        const value = response?.data || 10;
+        const value = response?.data || 0;
         setTime(value);
         setInputValue(value); // Update input with the initial value
       })
@@ -59,7 +59,7 @@ function App() {
 
   // Handle input change with debounce
   const handleInputChange = (e) => {
-    const value = parseInt(e.target.value, 10) || 0;
+    const value = parseInt(e.target.value, 0) || 0;
     setInputValue(value);
     debounceUpdateAPI(value);
   };
